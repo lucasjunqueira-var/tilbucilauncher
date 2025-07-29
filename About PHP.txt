@@ -1,0 +1,5 @@
+TilBuci desktop launcher uses the static-php-cli project (https://github.com/crazywhalecc/static-php-cli) for local PHP scripts processing. You must copy the cli builds for Linux, Windows and macOS to this folder as follows:
+
+Windows: spc-max cli version as "php.exe"
+Linux: bulk cli version as "php"
+macOS: bulk cli version as "phmmac"

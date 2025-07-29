@@ -1,0 +1,21 @@
+{
+  "name": "TilBuci",
+  "author": "Lucas Junqueira",
+  "license": "MPL-2.0",
+  "description": "TilBuci desktop launcher.",
+  "version": "14.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "make": "electron-forge make"
+  },
+  "devDependencies": {
+    "electron": "^29.0.0",
+    "@electron-forge/cli": "^6.0.0-beta.73",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.73", 
+    "@electron-forge/maker-deb": "^6.0.0-beta.73"
+  },
+  "config": {
+    "forge": "./forge.config.js"
+  }
+}
