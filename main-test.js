@@ -1,3 +1,8 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
 const { app, BrowserWindow, ipcMain, shell, Menu } = require('electron');
 const path = require('path');
 const { exec } = require('child_process');
@@ -74,6 +79,17 @@ app.on('window-all-closed', () => {
 
 app.on('ready', () => {
 	if (process.platform == 'darwin') {
+		exec('./phpmac -S localhost:51804 -t '+serverPath+'server/public/', (error, stdout, stderr) => {
+		  if (error) {
+			console.error(`PHP server start error: ${error.message}`);
+			return;10
+		  }
+		  if (stderr) {
+			console.error(`Stderr: ${stderr}`);
+			return;
+		  }
+		  console.log(`Result: ${stdout}`);
+		});
 	} else if (process.platform == 'linux') {
 		exec('./php -S localhost:51804 -t '+serverPath+'server/public/', (error, stdout, stderr) => {
 		  if (error) {
@@ -103,6 +119,17 @@ app.on('ready', () => {
 
 app.on('quit', () => {
 	if (process.platform == 'darwin') {
+		exec('pkill -f "phpmac -S"', (error, stdout, stderr) => {
+		  if (error) {
+			console.error(`PHP server stop error: ${error.message}`);
+			return;
+		  }
+		  if (stderr) {
+			console.error(`Stderr: ${stderr}`);
+			return;
+		  }
+		  console.log(`Result: ${stdout}`);
+		});
 	} else if (process.platform == 'linux') {
 		exec('pkill -f "php -S"', (error, stdout, stderr) => {
 		  if (error) {
